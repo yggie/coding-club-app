@@ -1,0 +1,17 @@
+mailer:
+  smtp_settings:
+    address: 'smtp.sendgrid.net'
+    port: 587
+    user_name: <%= ENV['SENDGRID_USERNAME'] %>
+    password: <%= ENV['SENDGRID_PASSWORD'] %>
+    domain: 'heroku.com'
+    authentication: 'plain'
+    enable_starttls_auto: true
+
+google_oauth2:
+  client_id: <%= ENV['GOOGLE_OAUTH2_CLIENT_ID'] %>
+  client_secret: <%= ENV['GOOGLE_OAUTH2_CLIENT_SECRET'] %>
+
+newsletter:
+  recipient_groups:
+    testers: <%= ENV['RECIPIENTS_TEST_GROUP'] %>

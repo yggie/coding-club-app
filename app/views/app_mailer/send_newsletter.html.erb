@@ -1,0 +1,19 @@
+<div style="width: 100%;">
+  <table style="margin: auto; width: 600px; border-collapse: collapse;">
+    <thead style="background-color: #9F160D; height: 50px; color: white; font-family: 'Helvetica'">
+      <tr>
+        <th><%= image_tag newsletter_header_image_url %></th>
+      </tr>
+      <tr>
+        <th style="font-weight: 300; padding: 18px; letter-spacing: 2px"><%= @newsletter.subject.upcase %></th>
+      </tr>
+    </thead>
+    <tbody style="background-color: #E9E9E9; color: #666666; font-family: 'Courier'; font-size: 14px">
+      <tr>
+        <td style="padding: 30px">
+          <%= NewsletterPresenter::markdown_to_html(@newsletter.body).html_safe %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,17 @@
+mailer:
+  smtp_settings:
+    address: "smtp.localhost"
+    port: 25
+    user_name: "email@localhost"
+    password: "password"
+    domain: "example.com"
+    authentication: "plain"
+
+google_oauth2:
+  client_id: ''
+  client_secret: ''
+
+newsletter:
+  sender: "coding-club@alliants.com"
+  recipient_groups:
+    testers: []

@@ -1,0 +1,4 @@
+newsletter:
+  sender: "coding-club-development@alliants.com"
+  recipient_groups:
+    testers: ['randomguy@alliants.com']
