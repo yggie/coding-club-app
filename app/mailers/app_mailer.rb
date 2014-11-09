@@ -5,13 +5,15 @@ class AppMailer < ActionMailer::Base
     @newsletter = newsletter
     raise 'Attempted to send an invalid Newsletter' if @newsletter.invalid?
 
+    @recipients = case group
+                  when :test then AppConfig.newsletter.recipient_groups.testers
+                  when :subscribed then AppConfig.newsletter.recipient_groups.subscribed
+                  else raise 'Not implemented!'
+                  end
+
     attachments.inline['header.jpg'] = File.read(Rails.root.join("app/assets/images/#{Newsletter::HEADER_IMAGE_PATH}"))
-    if group == :test
-      mail(to: AppConfig.newsletter.recipient_groups.testers,
-           subject: @newsletter.subject)
-    else
-      raise 'Not implemented!'
-    end
+    mail(to: @recipients,
+         subject: @newsletter.subject)
   end
 
   module Helper

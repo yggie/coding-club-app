@@ -4,21 +4,20 @@
       <div class="col-sm-12 col-md-6">
         <div class="form-group">
           <%= f.label :subject %>
-          <%= f.text_field :subject, class: 'form-control',
-            disabled: @newsletter.readonly? %>
+          <%= f.text_field :subject, class: 'form-control' %>
         </div>
 
         <div class="form-group">
           <%= f.label :body %>
-          <%= f.text_area :body, class: 'form-control', rows: 20,
-            disabled: @newsletter.readonly? %>
+          <%= f.text_area :body, class: 'form-control', rows: 20 %>
         </div>
 
-        <%= f.submit (@newsletter.new_record? ? 'Save draft' : 'Update draft'), class: 'btn btn-default' %>
+        <%= f.submit (@newsletter.new_record? ? 'Save draft' : 'Update draft'),
+          class: 'btn btn-default', disabled: @newsletter.readonly? %>
 
         <button class="generate-preview-button btn btn-default" type="button">Generate Preview</button>
 
-        <% if @newsletter.persisted? %>
+        <% if @newsletter.persisted? && !@newsletter.readonly? %>
           <%= link_to 'Send to Testers', newsletter_send_to_test_group_path(@newsletter), class: 'btn btn-success' %>
           <%= link_to 'Send to Subscribers', newsletter_send_to_subscribed_group_path(@newsletter), class: 'btn btn-danger' %>
         <% else %>

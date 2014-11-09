@@ -15,3 +15,4 @@ google_oauth2:
 newsletter:
   recipient_groups:
     testers: <%= ENV['RECIPIENTS_TEST_GROUP'] %>
+    subscribed: <%= ENV['RECIPIENTS_SUBSCRIBED_GROUP'] %>

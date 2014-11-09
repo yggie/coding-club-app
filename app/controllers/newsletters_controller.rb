@@ -30,8 +30,11 @@ class NewslettersController < ApplicationController
   def update
     @newsletter = Newsletter.find(params[:id])
 
-    if @newsletter.update_attributes(newsletter_params)
-      redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully sent email' }
+    if @newsletter.readonly?
+      flash.now[:warning] = 'This draft can no longer be modified'
+      render :show
+    elsif @newsletter.update_attributes(newsletter_params)
+      redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully updated the draft' }
     else
       flash.now[:danger] = @newsletter.errors.full_messages.join(', ')
       render :show
@@ -47,14 +50,25 @@ class NewslettersController < ApplicationController
   def send_to_test_group
     @newsletter = Newsletter.find(params[:newsletter_id])
 
-    AppMailer.send_newsletter(@newsletter, group: :test).deliver
-    redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully sent newsletter to the test group' }
+    if @newsletter.readonly?
+      redirect_to newsletter_path(@newsletter), flash: { warning: 'This newsletter can no longer be sent because it has been marked as read only' }
+    else
+      AppMailer.send_newsletter(@newsletter, group: :test).deliver
+      redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully sent newsletter to the test group' }
+    end
   end
 
   def send_to_subscribed_group
     @newsletter = Newsletter.find(params[:newsletter_id])
 
-    redirect_to newsletter_path(@newsletter), flash: { info: 'Sorry this action has not yet been implemented!' }
+    if @newsletter.readonly?
+      redirect_to newsletter_path(@newsletter), flash: { warning: 'This newsletter can no longer be sent because it has been marked as read only' }
+    elsif @newsletter.update_attributes(sent_at: Time.now)
+      AppMailer.send_newsletter(@newsletter, group: :subscribed).deliver
+      redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully delivered newsletter' }
+    else
+      redirect_to newsletter_path(@newsletter), flash: { danger: 'The action failed unexpected' }
+    end
   end
 
   private

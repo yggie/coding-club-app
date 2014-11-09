@@ -8,6 +8,6 @@ class Newsletter < ActiveRecord::Base
   validates :body, presence: true
 
   def readonly?
-    self.sent_at || self.sent_at_changed?
+    (self.sent_at && !self.sent_at_changed?) || (!self.sent_at && self.sent_at_changed?)
   end
 end
