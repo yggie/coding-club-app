@@ -5,10 +5,10 @@
   <title><%= @newsletter.subject %></title>
 </head>
 <body style="margin: 0; background-color: #ccc;">
-  <table style="margin: auto; width: 600px; border-collapse: collapse;">
+  <table style="margin: auto; width: 100%; border-collapse: collapse;">
     <thead style="background-color: #990000; height: 50px; color: white; font-family: 'Helvetica'">
       <tr>
-        <th style="padding: 0"><%= image_tag newsletter_header_image_url %></th>
+        <th style="margin: 0;padding: 0"><%= image_tag(newsletter_header_image_url, style: 'width: 100%;') %></th>
       </tr>
       <tr>
         <th style="font-weight: 300; padding: 18px; letter-spacing: 2px"><%= @newsletter.subject.upcase %></th>

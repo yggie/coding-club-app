@@ -1,5 +1,5 @@
 class Newsletter < ActiveRecord::Base
-  HEADER_IMAGE_PATH = 'mailerheader_03.jpg'
+  HEADER_IMAGE_PATH = 'mail-header.jpg'
 
   belongs_to :author, class_name: 'User', foreign_key: :user_id
 
