@@ -1,6 +1,12 @@
-<div style="width: 100%;">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= @newsletter.subject %></title>
+</head>
+<body style="margin: 0; background-color: #ccc;">
   <table style="margin: auto; width: 600px; border-collapse: collapse;">
-    <thead style="background-color: #9F160D; height: 50px; color: white; font-family: 'Helvetica'">
+    <thead style="background-color: #990000; height: 50px; color: white; font-family: 'Helvetica'">
       <tr>
         <th style="padding: 0"><%= image_tag newsletter_header_image_url %></th>
       </tr>
@@ -16,4 +22,5 @@
       </tr>
     </tbody>
   </table>
-</div>
+</body>
+</html>

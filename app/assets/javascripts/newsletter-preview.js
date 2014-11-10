@@ -18,7 +18,7 @@
             url: url,
             dataType: 'html',
             success: function (data) {
-              $preview.contents().find('body').html(data);
+              $preview.contents().find('html').html(data);
             },
           });
         }).click();
