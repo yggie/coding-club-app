@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <%= link_to 'Send to Testers', newsletter_send_to_test_group_path(@newsletter), class: 'btn btn-success' %>
+      <p class="alert alert-success">Sends to a pre-defined group of volunteers, useful for testing.</p>
+    </div>
+
+    <div class="col-sm-12 col-md-4">
+      <%= link_to 'Send to Subscribers', newsletter_send_to_subscribed_group_path(@newsletter), class: 'btn btn-danger' %>
+      <p class="alert alert-danger">
+        Sends the newsletter to all subscribers, in addition, this will
+        automatically archive the newsletter.
+      </p>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="alert alert-warning">
+        <p>Note that none of these actions can be undone, send with caution!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <iframe class="newsletter-preview"></iframe>
+    </div>
+  </div>
+
+  <script id="iframe-contents" type="text/x-iframe-contents">
+    <%= render template: 'app_mailer/send_newsletter' %>
+  </script>
+
+  <script>
+    $(document).on('ready', function () {
+      var $iframe = $('iframe.newsletter-preview'),
+      $iframeContents = $('#iframe-contents');
+
+      $iframe.contents().find('html').html($iframeContents.html());
+      setTimeout(function () {
+        $iframe.height($iframe.contents().find('body > *').height());
+      }, 100);
+      $iframeContents.remove();
+    });
+  </script>
+</div>

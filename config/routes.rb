@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   root 'newsletters#new'
 
   resources :newsletters do
+    get :send_confirmation
     get :send_to_test_group
     get :send_to_subscribed_group
   end

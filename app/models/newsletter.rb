@@ -7,6 +7,9 @@ class Newsletter < ActiveRecord::Base
   validates :subject, presence: true
   validates :body, presence: true
 
+  scope :drafts, -> { where(sent_at: nil) }
+  scope :archived, -> { where.not(sent_at: nil) }
+
   def readonly?
     (self.sent_at && !self.sent_at_changed?) || (!self.sent_at && self.sent_at_changed?)
   end

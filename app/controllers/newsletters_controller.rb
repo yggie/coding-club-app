@@ -13,7 +13,8 @@ class NewslettersController < ApplicationController
   end
 
   def index
-    @newsletters = Newsletter.order(created_at: :desc).includes(:author)
+    @newsletters = Newsletter.drafts.order(created_at: :desc).includes(:author)
+    @archived = Newsletter.archived.order(created_at: :desc).includes(:author)
   end
 
   def create
@@ -45,6 +46,12 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.new(newsletter_params)
 
     render template: 'app_mailer/send_newsletter', layout: false
+  end
+
+  def send_confirmation
+    @newsletter = Newsletter.find(params.require(:newsletter_id))
+
+    render template: 'newsletters/send_confirmation'
   end
 
   def send_to_test_group

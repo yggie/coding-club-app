@@ -19,6 +19,9 @@
             dataType: 'html',
             success: function (data) {
               $preview.contents().find('html').html(data);
+              setTimeout(function () {
+                $preview.height($preview.contents().find('body > *').height());
+              }, 100);
             },
           });
         }).click();

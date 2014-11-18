@@ -1,5 +1,30 @@
 <ul>
+  <h3>Latest Drafts</h3>
+  <% if @newsletters.empty? %>
+    <p>There have been no newsletter drafts made recently</p>
+  <% end %>
   <% @newsletters.each do |newsletter| %>
+    <li>
+      <%= link_to newsletter_path(newsletter) do %>
+        <section>
+          <h3><%= newsletter.subject %></h3>
+          <% if newsletter.readonly? %>
+            <p>sent <%= time_ago_in_words(newsletter.sent_at) %> ago</p>
+          <% end %>
+          <p>created by <%= newsletter.author.name %> <%= time_ago_in_words(newsletter.created_at) %> ago</p>
+          <p>last updated <%= time_ago_in_words(newsletter.updated_at) %> ago</p>
+        </section>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul>
+  <h3>Archived Newsletters</h3>
+  <% if @newsletters.empty? %>
+    <p>There are no archived newsletters present</p>
+  <% end %>
+  <% @archived.each do |newsletter| %>
     <li>
       <%= link_to newsletter_path(newsletter) do %>
         <section>
