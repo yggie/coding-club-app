@@ -18,7 +18,7 @@
         <button class="generate-preview-button btn btn-default" type="button">Generate Preview</button>
 
         <% if @newsletter.persisted? %>
-          <%= link_to 'Send Email', newsletter_send_confirmation_path(@newsletter), class: 'btn btn-warning' %>
+          <%= link_to 'Send Email', newsletter_confirm_path(@newsletter), class: 'btn btn-warning' %>
         <% else %>
           <%= link_to 'Send Email', root_path, class: 'btn btn-warning', disabled: true %>
         <% end %>

@@ -11,8 +11,3 @@ mailer:
 google_oauth2:
   client_id: <%= ENV['GOOGLE_OAUTH2_CLIENT_ID'] %>
   client_secret: <%= ENV['GOOGLE_OAUTH2_CLIENT_SECRET'] %>
-
-newsletter:
-  recipient_groups:
-    testers: <%= ENV['RECIPIENTS_TEST_GROUP'] %>
-    subscribed: <%= ENV['RECIPIENTS_SUBSCRIBED_GROUP'] %>

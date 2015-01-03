@@ -1,19 +1,13 @@
 class AppMailer < ActionMailer::Base
   default from: AppConfig.newsletter.sender
 
-  def send_newsletter(newsletter, group: raise)
+  def prepare_newsletter(newsletter, user)
     @newsletter = newsletter
+    @user = user
     raise 'Attempted to send an invalid Newsletter' if @newsletter.invalid?
 
-    @recipients = case group
-                  when :test then AppConfig.newsletter.recipient_groups.testers
-                  when :subscribed then AppConfig.newsletter.recipient_groups.subscribed
-                  else raise 'Not implemented!'
-                  end
-
     attachments.inline['header.jpg'] = File.read(Rails.root.join("app/assets/images/#{Newsletter::HEADER_IMAGE_PATH}"))
-    mail(to: @recipients,
-         subject: @newsletter.subject)
+    mail(to: @user.email, subject: @newsletter.subject)
   end
 
   module Helper

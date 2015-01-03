@@ -13,15 +13,23 @@
  *= require_tree .
  *= require_self
  *= require font-awesome
- *= require bootstrap-social
  */
+
+$navbar-height: 60px;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@import "bootstrap-social";
 
 iframe.newsletter-preview {
   display: block;
   margin: auto;
   width: 620px;
   height: 500px;
+}
+
+.dropdown-toggle.dropdown-with-image {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

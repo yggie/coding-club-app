@@ -44,14 +44,15 @@ class NewslettersController < ApplicationController
 
   def preview
     @newsletter = Newsletter.new(newsletter_params)
+    @user = current_user
 
-    render template: 'app_mailer/send_newsletter', layout: false
+    render template: 'app_mailer/prepare_newsletter', layout: false
   end
 
-  def send_confirmation
+  def confirm
     @newsletter = Newsletter.find(params.require(:newsletter_id))
 
-    render template: 'newsletters/send_confirmation'
+    render template: 'newsletters/confirm'
   end
 
   def send_to_test_group
@@ -60,7 +61,7 @@ class NewslettersController < ApplicationController
     if @newsletter.readonly?
       redirect_to newsletter_path(@newsletter), flash: { warning: 'This newsletter can no longer be sent because it has been marked as read only' }
     else
-      AppMailer.send_newsletter(@newsletter, group: :test).deliver
+      SendNewsletterJob.perform_later(@newsletter, true)
       redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully sent newsletter to the test group' }
     end
   end
@@ -71,7 +72,7 @@ class NewslettersController < ApplicationController
     if @newsletter.readonly?
       redirect_to newsletter_path(@newsletter), flash: { warning: 'This newsletter can no longer be sent because it has been marked as read only' }
     elsif @newsletter.update_attributes(sent_at: Time.now)
-      AppMailer.send_newsletter(@newsletter, group: :subscribed).deliver
+      SendNewsletterJob.perform_later(@newsletter, false)
       redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully delivered newsletter' }
     else
       redirect_to newsletter_path(@newsletter), flash: { danger: 'The action failed unexpected' }
@@ -81,6 +82,6 @@ class NewslettersController < ApplicationController
   private
 
   def newsletter_params
-    params.require(:newsletter).permit(:subject, :recipients, :body)
+    params.require(:newsletter).permit(:subject, :body)
   end
 end
