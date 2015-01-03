@@ -2,8 +2,30 @@ class NewslettersController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @newsletter = Newsletter.new(subject: 'This Week',
-      body: "# Preview\n\nClick “Generate Preview” to generate a preview of the email template")
+    @newsletter = Newsletter.new(
+      subject: 'This Week',
+      body: <<-MARKDOWN
+# Welcome to this week's Coding Club
+
+*****************************
+
+# This’s Week’s Talk
+[Details of the talk]
+
+*****************************
+
+# What People are up to
+
+## [Person]
+[What “Person” is planning to do]
+
+*****************************
+
+Closing remarks
+
+**Alliants Coding Club Committee**
+      MARKDOWN
+    )
 
     render :show
   end
