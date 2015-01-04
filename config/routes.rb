@@ -10,12 +10,12 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'newsletters#new'
+  root 'newsletters#index'
 
   get '/settings', to: 'users#edit', as: :edit_user
   patch '/settings', to: 'users#update', as: :update_user
 
-  resources :newsletters do
+  resources :newsletters, only: [:show, :index, :update] do
     get :confirm
     get :send_to_test_group
     get :send_to_subscribed_group

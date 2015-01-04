@@ -16,14 +16,18 @@
     </thead>
     <tbody style="background-color: #E9E9E9; color: #666666; font-family: 'Courier'; font-size: 14px">
       <tr>
-        <td style="padding: 30px">
+        <td style="padding: 30px 30px 20px 30px">
           <%= NewsletterPresenter::markdown_to_html(@newsletter.body).html_safe %>
         </td>
       </tr>
       <tr>
-        <td style="padding: 10px 30px;font-size: 10px">
+        <td style="padding: 0 30px">
           <hr />
-          <%= link_to 'update subscription preferences', edit_user_path(@user) %>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 30px;font-size: 10px">
+          <%= link_to 'update subscription preferences', edit_user_url(@user) %>
         </td>
       </tr>
     </tbody>

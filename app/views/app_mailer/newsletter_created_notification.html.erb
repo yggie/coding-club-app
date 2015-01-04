@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= message.subject %></title>
+</head>
+<body style="margin: 0; background-color: #ccc;">
+  <table style="margin: auto; width: 100%; border-collapse: collapse;">
+    <thead style="background-color: #990000; height: 50px; color: white; font-family: 'Helvetica'">
+      <tr>
+        <th style="font-weight: 300; padding: 18px; letter-spacing: 2px"><%= message.subject.upcase %></th>
+      </tr>
+    </thead>
+    <tbody style="background-color: #E9E9E9; color: #666666; font-family: 'Courier'; font-size: 14px">
+      <tr>
+        <td style="padding: 30px 30px 20px 30px">
+          <p>
+            Dear Coding Club Admin,
+          </p>
+          <p>
+            We are writing to let you know that a new newsletter draft has been
+            created for the coding club scheduled on
+            <%= @newsletter.target_date %>. You can view and/or edit the draft
+            <%= link_to 'here', newsletter_url(@newsletter) %>.
+          </p>
+          <p>
+            Kind Regards,
+            <br />
+            <strong>Coding Club App</strong>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 0 30px">
+          <hr />
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 30px;font-size: 10px">
+          <%= link_to 'update subscription preferences', edit_user_url(@user) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

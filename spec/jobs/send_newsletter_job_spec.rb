@@ -9,7 +9,7 @@ describe SendNewsletterJob, type: :job do
       @unsubscribed_user = FactoryGirl.create(:user, subscription_preference: :unsubscribed)
       @admin_user = FactoryGirl.create(:user, subscription_preference: :admin)
 
-      @newsletter = FactoryGirl.create(:newsletter, author: @admin_user)
+      @newsletter = FactoryGirl.create(:newsletter)
       SendNewsletterJob.perform_later(@newsletter, admin_only)
     end
 

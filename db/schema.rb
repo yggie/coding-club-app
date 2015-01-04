@@ -11,18 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103160144) do
+ActiveRecord::Schema.define(version: 20150104004704) do
 
-  create_table "newsletters", force: true do |t|
-    t.string   "subject",    null: false
-    t.text     "body",       null: false
-    t.integer  "user_id",    null: false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string   "subject",     null: false
+    t.text     "body",        null: false
     t.datetime "sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "target_date"
+    t.string   "slug"
   end
 
-  create_table "users", force: true do |t|
+  add_index "newsletters", ["slug"], name: "index_newsletters_on_slug", unique: true, using: :btree
+
+  create_table "users", force: :cascade do |t|
     t.string   "email",                               null: false
     t.string   "name"
     t.string   "first_name"
@@ -33,6 +39,17 @@ ActiveRecord::Schema.define(version: 20150103160144) do
     t.integer  "subscription_preference", default: 1
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end

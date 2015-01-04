@@ -1,11 +1,13 @@
 class Newsletter < ActiveRecord::Base
   HEADER_IMAGE_PATH = 'mail-header.jpg'
 
-  belongs_to :author, class_name: 'User', foreign_key: :user_id
+  extend FriendlyId
+  friendly_id :target_date, use: :slugged
+  has_paper_trail only: [:subject, :body]
 
-  validates :author, presence: true
   validates :subject, presence: true
   validates :body, presence: true
+  validates :target_date, presence: true
 
   scope :drafts, -> { where(sent_at: nil) }
   scope :archived, -> { where.not(sent_at: nil) }

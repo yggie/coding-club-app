@@ -12,11 +12,6 @@
     </div>
 
     <div class="collapse navbar-collapse" id="header-collapseable-menu">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Write', new_newsletter_path %></li>
-        <li><%= link_to 'Find', newsletters_path %></li>
-      </ul>
-
       <% if user_signed_in? %>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

@@ -20,17 +20,23 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'devise', '~> 3.4.1'
 gem 'omniauth-google-oauth2', '~> 0.2.6'
 gem 'font-awesome-rails', '~> 4.2.0'
+# Runs jobs asynchronously in the current thread without requiring a separate
+# process
 gem 'sucker_punch', '~> 1.3.2'
+# Manages the creation of non-numeric human-readable identifiers
+gem 'friendly_id', '~> 5.0.4'
+# A useful gem to implement document versioning and changes tracking
+gem 'paper_trail', '~> 3.0.6'
 
 group :development do
+  # Provides an interface to capture and render emails sent out by the
+  # application
   gem 'letter_opener_web', '~> 1.2.3'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'better_errors', '~> 2.1.0'
 end
 
 group :development, :test do
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3.10'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'awesome_print', '~> 1.6.1'
   gem 'pry-byebug', '~> 2.0.0'
