@@ -76,7 +76,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'coding-club-newsletter.herokuapp.com' }
+  config.action_mailer.default_url_options = AppConfig.mailer.default_url_options.to_hash
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = AppConfig.mailer.smtp_settings.to_hash
 end
