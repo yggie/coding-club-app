@@ -22,6 +22,6 @@
   </div>
 </nav>
 
-  <% [:danger, :warning, :info, :success].each do |type| %>
-    <%= content_tag(:div, flash[type], class: "alert alert-#{type}", style: 'margin:0;text-align:center') if flash[type] %>
-  <% end %>
+<% [:danger, :warning, :info, :success].each do |type| %>
+  <%= content_tag(:div, flash[type], class: "alert alert-#{type}", style: 'margin:0;text-align:center') if flash[type] %>
+<% end %>
