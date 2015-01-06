@@ -1,40 +1,56 @@
-<ul>
-  <h3>Latest Drafts</h3>
-  <% if @newsletters.empty? %>
+<section class="container">
+  <% if @active_newsletters.empty? %>
     <p>There have been no newsletter drafts made recently</p>
+  <% else %>
+    <div class="row">
+      <h3>Drafts</h3>
+    </div>
+    <% @active_newsletters.each do |newsletter| %>
+      <div class="row draft-list-item">
+        <%= link_to newsletter_path(newsletter) do %>
+          <div class="col-md-8">
+            <div class="draft-image" style="background-image:url(<%= image_path Newsletter::HEADER_IMAGE_PATH %>)">
+            </div>
+            <div>
+            </div>
+            <div class="draft-contents">
+              <div class="draft-subject">
+                <h3><%= newsletter.subject %></h3>
+              </div>
+              <pre class="draft-body"><%= newsletter.body %></pre>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <ul class="draft-activities-list">
+              <%= newsletter.total_activities %> activities
+              <% newsletter.recent_activities(4).each do |activity| %>
+                <li class="media draft-activity-item">
+                  <div class="media-left">
+                    <%= image_tag activity.user.profile_image_url,
+                      title: activity.user.name, class: 'img-circle' %>
+                  </div>
+                  <div class="media-body">
+                    <%= activity.type.capitalize + 'd' %> by <%= activity.user.name %> <%= time_ago_in_words(activity.time) %> ago
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
-  <% @newsletters.each do |newsletter| %>
-    <li>
-      <%= link_to newsletter_path(newsletter) do %>
-        <section>
-          <h3><%= newsletter.subject %></h3>
-          <% if newsletter.readonly? %>
-            <p>sent <%= time_ago_in_words(newsletter.sent_at) %> ago</p>
-          <% end %>
-          <p>created <%= time_ago_in_words(newsletter.created_at) %> ago</p>
-          <p>last updated <%= time_ago_in_words(newsletter.updated_at) %> ago</p>
-        </section>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+</section>
 
-<ul>
+<ul style="list-style: none">
   <h3>Archived Newsletters</h3>
-  <% if @newsletters.empty? %>
+  <% if @archived.empty? %>
     <p>There are no archived newsletters present</p>
   <% end %>
   <% @archived.each do |newsletter| %>
     <li>
       <%= link_to newsletter_path(newsletter) do %>
-        <section>
-          <h3><%= newsletter.subject %></h3>
-          <% if newsletter.readonly? %>
-            <p>sent <%= time_ago_in_words(newsletter.sent_at) %> ago</p>
-          <% end %>
-          <p>created <%= time_ago_in_words(newsletter.created_at) %> ago</p>
-          <p>last updated <%= time_ago_in_words(newsletter.updated_at) %> ago</p>
-        </section>
+        “<%= newsletter.subject %>” sent <%= time_ago_in_words(newsletter.sent_at) %> ago
       <% end %>
     </li>
   <% end %>

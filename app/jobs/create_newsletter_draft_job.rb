@@ -27,7 +27,7 @@ class CreateNewsletterDraftJob < ActiveJob::Base
 
 Closing remarks
 
-**Alliants Coding Club Committee**
+*Alliants Coding Club Committee*
       MARKDOWN
     )
 

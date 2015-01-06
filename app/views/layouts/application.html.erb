@@ -9,9 +9,11 @@
 </head>
 <body>
 
-<header>
-  <%= render 'layouts/header' %>
-</header>
+<% unless content_for(:skip_header) && yield(:skip_header) %>
+  <header>
+    <%= render 'layouts/header' %>
+  </header>
+<% end %>
 
 <main>
   <%= yield %>

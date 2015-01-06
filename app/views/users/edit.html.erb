@@ -1,23 +1,59 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <h1>Hello!</h1>
+
+      <div class="media">
+        <div class="media-left">
+          <img class="img-circle" src="<%= current_user.profile_image_url %>" alt="" />
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading"><%= current_user.name %></h4>
+          <p><%= current_user.email %></p>
+        </div>
+      </div>
+
+      <h3>How often should we email you?</h3>
+
       <%= form_for current_user, url: update_user_path do |f| %>
-        <%= f.label value: :admin do %>
-          <%= f.radio_button :subscription_preference, :admin %>
-          Admin
-        <% end %>
+        <small class="hint">
+          We have put together a selection of subscription packages to make it
+          easier to get involved:
+        </small>
 
-        <%= f.label value: :subscribed do %>
-          <%= f.radio_button :subscription_preference, :subscribed %>
-          Subscribed
-        <% end %>
+        <div class="radio">
+          <%= f.label :subscription_preference_admin do %>
+            <%= f.radio_button :subscription_preference, :admin %>
+            <strong>Admin</strong> - In addition to receiving the newsletters,
+            you will be also notified when a newsletter draft has been created.
+            We will also offer you free food.
+          <% end %>
+        </div>
 
-        <%= f.label value: :unsubscribed do %>
-          <%= f.radio_button :subscription_preference, :unsubscribed %>
-          Unsubscribed
-        <% end %>
+        <div class="radio">
+          <%= f.label :subscription_preference_subscribed do %>
+            <%= f.radio_button :subscription_preference, :subscribed %>
+            <strong>Subscribed</strong> - You will receive all newsletters for
+            the coding club. We will carefully scrutinise your movements and
+            record your absence.
+          <% end %>
+        </div>
 
-        <%= f.submit 'Update Preferences' %>
+        <div class="radio">
+          <%= f.label :subscription_preference_unsubscribed do %>
+            <%= f.radio_button :subscription_preference, :unsubscribed %>
+            <strong>Unsubscribed</strong> - You will no longer receive
+            newsletters from the coding club. Your name will be recorded and we
+            will forever spread rumours and bad mouth you behind your back.
+          <% end %>
+        </div>
+
+        <p>
+          <small class="hint">
+            Choose wisely and you will be rewarded accordingly.
+          </small>
+        </p>
+        <%= f.submit 'Update Preferences', class: 'btn btn-default' %>
       <% end %>
     </div>
   </div>

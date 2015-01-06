@@ -8,30 +8,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Coding Club', root_path, class: 'navbar-brand' %>
+      <%= link_to 'Alliants Coding Club', root_path, class: 'navbar-brand' %>
     </div>
 
     <div class="collapse navbar-collapse" id="header-collapseable-menu">
       <% if user_signed_in? %>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle dropdown-with-image" role="button"
-                data-toggle="dropdown" aria-expanded="false">
-              <img class="img-circle" src="<%= current_user.profile_image_url %>"
-                width="50" height="50" alt="<%= current_user.name %>’s profile image"/>
-              <%= current_user.name %> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><%= link_to 'Account Settings', edit_user_path %></li>
-              <li><%= link_to 'Logout', destroy_user_session_path %></li>
-            </ul>
-          </li>
+        <ul class="nav navbar-nav navbar-right user-controls">
+          <li><%= link_to fa_icon('gear'), edit_user_path, title: 'Account settings' %></li>
+          <li><%= link_to fa_icon('sign-out'), destroy_user_session_path, title: 'Sign out' %></li>
         </ul>
       <% end %>
     </div>
   </div>
+</nav>
 
   <% [:danger, :warning, :info, :success].each do |type| %>
     <%= content_tag(:div, flash[type], class: "alert alert-#{type}", style: 'margin:0;text-align:center') if flash[type] %>
   <% end %>
-</nav>

@@ -1,9 +1,26 @@
-<section style="margin:auto;max-width:300px;padding-top:50px">
-  <h1>Login</h1>
-  <p>Please log in to view the application</p>
+<% provide(:skip_header, true) %>
 
-  <%= link_to user_omniauth_authorize_path(:google_oauth2),
-    class: 'btn btn-block btn-social btn-google-plus' do %>
-    <%= fa_icon('google-plus') %> Sign in with Google+
-  <% end %>
-</section>
+<div class="sign-in-page">
+  <h1 class="large-header">
+    Alliants
+    <br />
+    Coding Club
+    <br />
+    App
+  </h1>
+  <section class="login-section">
+    <p>
+      You must be logged in to view this application.
+    </p>
+
+    <%= link_to user_omniauth_authorize_path(:google_oauth2),
+      class: 'btn btn-block btn-social btn-google-plus' do %>
+      <%= fa_icon('google-plus') %> Sign in with Google+
+    <% end %>
+
+    <small>
+      Currently, only Gmail accounts associated with the Alliants organisation can
+      be accepted.
+    </small>
+  </section>
+</div>

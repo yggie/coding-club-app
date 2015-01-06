@@ -1,0 +1,22 @@
+.sign-in-page {
+  .large-header {
+    text-transform: uppercase;
+    background-color: $primary-color;
+    color: $icon-color;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 52px;
+    padding: 50px 30px 10px 30px;
+    margin: 0;
+  }
+
+  .login-section {
+    padding-top: 30px;
+    margin: auto;
+    max-width: 300px;
+  }
+
+  .btn-google-plus {
+    margin: 25px 0;
+  }
+}

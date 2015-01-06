@@ -1,0 +1,55 @@
+.draft-list-item {
+  $image-width: 250px;
+  $image-height: 150px;
+
+  .draft-image {
+    width: $image-width;
+    height: $image-height;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: $primary-color;
+    float: left;
+  }
+
+  .draft-contents {
+    margin-left: $image-width;
+    max-height: $image-height;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .draft-subject {
+    text-align: center;
+    color: $icon-color;
+    text-transform: uppercase;
+    background-color: $accent-color;
+    padding: 1px;
+
+    h3 {
+      font-weight: 300;
+      letter-spacing: 2px;
+      padding: 12px;
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+
+  .draft-body {
+    font-size: 10px;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  ul.draft-activities-list {
+    list-style: none;
+  }
+
+  .draft-activity-item {
+    $img-size: 40px;
+
+    img {
+      height: $img-size;
+      width: $img-size;
+    }
+  }
+}

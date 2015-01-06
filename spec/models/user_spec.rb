@@ -5,7 +5,7 @@ describe User, type: :model do
 
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_presence_of(:subscription_preference) }
-  it { is_expected.to allow_value('email@alliants.com').for(:email) }
+  it { is_expected.to allow_value('email@alliants.com', 'email@alliants.co.uk').for(:email) }
   it { is_expected.not_to allow_value('email@gmail.com', 'email@yahoo.com').for(:email) }
 
   context 'when the User is subscribed' do

@@ -1,5 +1,14 @@
 class NewsletterPresenter
-  RENDERER = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(
+  # check out the documentation here: https://github.com/vmg/redcarpet#and-you-can-even-cook-your-own
+  class InlineStyledHTML < Redcarpet::Render::HTML
+    include ActionView::Helpers::TagHelper
+
+    def header(text, header_level)
+      content_tag "h#{header_level}", text.html_safe, style: 'font-weight:100'
+    end
+  end
+
+  RENDERER = Redcarpet::Markdown.new(InlineStyledHTML.new(
                                        filter_html: true,
                                        link_attributes: {
                                          target: '_blank',

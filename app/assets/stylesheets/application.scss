@@ -10,17 +10,22 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  *= require font-awesome
  */
 
-$navbar-height: 60px;
+@import "themes/colors";
+@import "themes/bootstrap-customizations";
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 @import "bootstrap-social";
+
+@import "layouts/sign-in-page";
+
+@import "components/navbar";
+@import "components/draft-list";
 
 iframe.newsletter-preview {
   display: block;
@@ -29,7 +34,19 @@ iframe.newsletter-preview {
   height: 500px;
 }
 
-.dropdown-toggle.dropdown-with-image {
-  padding-top: 5px;
-  padding-bottom: 5px;
+.nav {
+  margin-bottom: 0;
+}
+
+.navbar-brand {
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.radio {
+  margin-bottom: 20px;
+}
+
+.hint {
+  color: $secondary-text-color;
 }

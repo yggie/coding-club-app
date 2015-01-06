@@ -6,7 +6,7 @@ class NewslettersController < ApplicationController
   end
 
   def index
-    @newsletters = Newsletter.drafts.order(created_at: :desc)
+    @active_newsletters = Newsletter.drafts.order(created_at: :desc)
     @archived = Newsletter.archived.order(created_at: :desc)
   end
 
@@ -29,7 +29,7 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.new(newsletter_params)
     @user = current_user
 
-    render template: 'app_mailer/newsletter', layout: false
+    render template: 'app_mailer/newsletter', layout: 'app_mailer'
   end
 
   def confirm
