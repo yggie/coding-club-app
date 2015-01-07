@@ -6,12 +6,11 @@
       <h3>Drafts</h3>
     </div>
     <% @active_newsletters.each do |newsletter| %>
+      <p class="hint"><small><%= newsletter.due_date_in_words %>…</small></p>
       <div class="row draft-list-item">
         <%= link_to newsletter_path(newsletter) do %>
           <div class="col-md-8">
             <div class="draft-image" style="background-image:url(<%= image_path Newsletter::HEADER_IMAGE_PATH %>)">
-            </div>
-            <div>
             </div>
             <div class="draft-contents">
               <div class="draft-subject">
@@ -22,8 +21,7 @@
           </div>
           <div class="col-md-4">
             <ul class="draft-activities-list">
-              <%= newsletter.total_activities %> activities
-              <% newsletter.recent_activities(4).each do |activity| %>
+              <% newsletter.recent_activities(5).each do |activity| %>
                 <li class="media draft-activity-item">
                   <div class="media-left">
                     <%= image_tag activity.user.profile_image_url,

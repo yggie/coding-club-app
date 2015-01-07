@@ -1,21 +1,36 @@
 .draft-list-item {
   $image-width: 250px;
   $image-height: 150px;
+  $list-item-height: 500px;
+  $list-item-vertical-padding: 10px;
+
+  max-height: $list-item-height;
+  background-color: $primary-color;
+  padding: $list-item-vertical-padding 0;
+
+  a {
+    color: $primary-text-color;
+
+    &:hover, &:active, &:visited {
+      color: $primary-text-color;
+      text-decoration: none;
+    }
+  }
 
   .draft-image {
     width: $image-width;
     height: $image-height;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: $primary-color;
     float: left;
   }
 
   .draft-contents {
     margin-left: $image-width;
-    max-height: $image-height;
     overflow-x: hidden;
     overflow-y: scroll;
+    max-height: $list-item-height - 2*$list-item-vertical-padding;
+    box-shadow: 2px 2px 5px $secondary-text-color;
   }
 
   .draft-subject {
@@ -46,6 +61,10 @@
 
   .draft-activity-item {
     $img-size: 40px;
+
+    padding: 10px;
+    background-color: white;
+    box-shadow: 2px 2px 5px $secondary-text-color;
 
     img {
       height: $img-size;

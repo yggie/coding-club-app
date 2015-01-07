@@ -26,6 +26,19 @@ class Newsletter < ActiveRecord::Base
     versions.count
   end
 
+  # TODO doesn’t really belong here, but will do for now
+  def due_date_in_words
+    day_diff = ((target_date.beginning_of_day - Time.now.beginning_of_day)/1.day).to_i
+
+    if day_diff > 1
+      "Draft due in #{day_diff} days"
+    elsif day_diff <= 0
+      'Draft overdue'
+    else
+      'Draft is due tomorrow'
+    end
+  end
+
   class Activity
     def initialize(raw_version)
       @raw_version = raw_version
