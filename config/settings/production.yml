@@ -15,3 +15,6 @@ mailer:
 google_oauth2:
   client_id: <%= ENV['GOOGLE_OAUTH2_CLIENT_ID'] %>
   client_secret: <%= ENV['GOOGLE_OAUTH2_CLIENT_SECRET'] %>
+
+google_analytics:
+  tracking_id: <%= ENV['GOOGLE_ANALYTICS_TRACKING_ID'] %>

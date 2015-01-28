@@ -13,3 +13,6 @@ google_oauth2:
 
 newsletter:
   sender: "coding-club@alliants.com"
+
+google_analytics:
+  tracking_id: ''
