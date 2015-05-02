@@ -28,6 +28,33 @@
               do something!
             </p>
           <% else %>
+            <% @upcoming_events.each do |event| %>
+              <section class="row">
+                <div class="col-xs-4 col-sm-2">
+                  <div class="event-date">
+                    <span class="day-of-the-month"><%= event.date.day %></span><br/>
+                    <span class="month"><%= event.date.strftime('%b') %></span>
+                  </div>
+                </div>
+
+                <div class="col-xs-8 col-sm-9 col-sm-offset-1">
+                  <h3><%= event.title %></h3>
+
+                  <p><small><%= event.technologies %></small></p>
+                  <p><%= event.summary %></p>
+
+                  <div class="media">
+                    <div class="media-left">
+                      <%= image_tag event.host_profile_image_url, class: 'media-object img-circle' %>
+                    </div>
+
+                    <div class="media-body">
+                      <p><%= event.host_name %></p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            <% end %>
           <% end %>
         </section>
 

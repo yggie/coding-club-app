@@ -61,7 +61,10 @@
                           title: activity.user.name, class: 'img-circle' %>
                       </div>
                       <div class="media-body">
-                        <%= "#{activity.type}d" %> <%= time_ago_in_words(activity.time) %> ago
+                        <small>
+                          <%= "#{activity.type}d" %>
+                          <%= time_ago_in_words(activity.time) %> ago
+                        </small>
                       </div>
                     </li>
                   <% end %>

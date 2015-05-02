@@ -64,10 +64,17 @@
     padding: 10px;
     line-height: $img-size;
     background-color: white;
+    overflow: hidden;
 
     img {
       height: $img-size;
       width: $img-size;
+    }
+
+    .media-body {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 }

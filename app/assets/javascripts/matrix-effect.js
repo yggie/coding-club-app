@@ -100,8 +100,8 @@ $(document).ready(function () {
       var height = oldRowTexts.length;
 
       performAsyncThen({
-        repeats: 3,
-        wait: 80,
+        repeats: 5,
+        wait: 60,
         operation: function () {
           performShuffleRows(0, height - 1);
         },
