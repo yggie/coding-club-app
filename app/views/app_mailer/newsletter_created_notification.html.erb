@@ -3,12 +3,14 @@
 <p>
   Dear Coding Club Admin,
 </p>
+
 <p>
   We are writing to let you know that a new newsletter draft has been
-  created for the coding club scheduled on
-  <%= @newsletter.target_date %>. You can view and/or edit the draft
-  <%= link_to 'here', newsletter_url(@newsletter) %>.
+  created by <%= @newsletter.recent_activities(1).first.user.name %> for the
+  coding club scheduled on <%= @newsletter.target_date %>. You can view and/or
+  edit the draft <%= link_to 'here', newsletter_url(@newsletter) %>.
 </p>
+
 <p>
   Kind Regards,
   <br />

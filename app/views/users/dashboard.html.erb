@@ -5,6 +5,7 @@
 
       <ul>
         <li><%= link_to 'schedule an event', new_event_path %></li>
+        <li><%= link_to 'create a newsletter draft', new_newsletter_path %></li>
       </ul>
     </section>
 
@@ -24,7 +25,7 @@
       <p>
         <small>
           You can view a list of archived events
-          <%= link_to 'here', root_path %>.
+          <%= link_to 'here', archived_events_path %>.
         </small>
       </p>
     </section>
@@ -36,9 +37,9 @@
         <p>There have been no newsletter drafts made recently</p>
       <% else %>
         <% @active_newsletters.each do |newsletter| %>
-          <p class="hint"><small><%= newsletter.due_date_in_words %>…</small></p>
+          <p class="hint"><small><%= newsletter.due_date_in_words %>...</small></p>
 
-          <div class="row draft-list-item">
+          <div class="col-xs-12 draft-list-item">
             <%= link_to newsletter_path(newsletter) do %>
               <div class="col-md-8">
                 <div class="draft-image" style="background-image:url(<%= image_path Newsletter::HEADER_IMAGE_PATH %>)">
@@ -60,7 +61,7 @@
                           title: activity.user.name, class: 'img-circle' %>
                       </div>
                       <div class="media-body">
-                        <%= "#{activity.type.capitalize}d" %> by <%= activity.user.name %> <%= time_ago_in_words(activity.time) %> ago
+                        <%= "#{activity.type}d" %> <%= time_ago_in_words(activity.time) %> ago
                       </div>
                     </li>
                   <% end %>

@@ -5,6 +5,24 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.friendly.find(params[:id])
   end
 
+  def new
+  end
+
+  def create
+    @newsletter = Newsletter.draft(
+      target_date: params.require(:newsletter).permit(:target_date).fetch('target_date')
+    )
+
+    if @newsletter.save
+      NewsletterDraftCreatedNotificationJob.new.perform(@newsletter.id)
+      redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully created newsletter draft' }
+    else
+      errors = @newsletter.errors.full_messages.reject { |message| message.match(/(?:subject|body)/i) }
+      flash.now[:warning] = errors.join(', ')
+      render :new
+    end
+  end
+
   def archived
     @archived = Newsletter.archived.order(created_at: :desc)
   end
@@ -58,7 +76,7 @@ class NewslettersController < ApplicationController
       SendNewsletterJob.perform_later(@newsletter, false)
       redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully delivered newsletter' }
     else
-      redirect_to newsletter_path(@newsletter), flash: { danger: 'The action failed unexpected' }
+      redirect_to newsletter_path(@newsletter), flash: { danger: @newsletter.errors.full_messages.join(', ') }
     end
   end
 

@@ -30,7 +30,6 @@
     overflow-x: hidden;
     overflow-y: scroll;
     max-height: $list-item-height - 2*$list-item-vertical-padding;
-    box-shadow: 2px 2px 5px $secondary-text-color;
   }
 
   .draft-subject {
@@ -63,8 +62,8 @@
     $img-size: 40px;
 
     padding: 10px;
+    line-height: $img-size;
     background-color: white;
-    box-shadow: 2px 2px 5px $secondary-text-color;
 
     img {
       height: $img-size;

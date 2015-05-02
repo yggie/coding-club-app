@@ -17,10 +17,11 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'users#dashboard', as: :users_dashboard
   get '/newsletters/archived', to: 'newsletters#archived', as: :archived_newsletters
+  get '/events/archived', to: 'events#archived', as: :archived_events
 
   resources :events, only: [:new, :create, :edit, :update]
 
-  resources :newsletters, only: [:show, :update] do
+  resources :newsletters, only: [:new, :create, :show, :update] do
     get :confirm
     get :send_to_test_group
     get :send_to_subscribed_group

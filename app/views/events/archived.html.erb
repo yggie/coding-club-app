@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <section class="col-xs-12">
+      <h1>Archived Events</h1>
+
+      <% if @archived_events.empty? %>
+        <p>There are no archived events.</p>
+      <% else %>
+        <ul>
+          <% @archived_events.each do |event| %>
+            <li>
+              <section>
+                <h3><%= event.title %></h3>
+                <small>Host: <%= event.host_name %></small>
+              </section>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <p><small>Back to my <%= link_to 'dashboard', users_dashboard_path %>.</small></p>
+    </section>
+  </div>
+</div>

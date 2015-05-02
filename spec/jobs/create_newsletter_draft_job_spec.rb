@@ -11,33 +11,33 @@ describe CreateNewsletterDraftJob, type: :job do
       @admin_two = FactoryGirl.create(:user, subscription_preference: :admin)
     end
 
-    it 'creates a newsletter draft' do
-      expect {
-        CreateNewsletterDraftJob.perform_later(date_string)
-      }.to change{ Newsletter.count }.by(1)
-    end
-
-    it 'sends notification emails to each admin' do
-      CreateNewsletterDraftJob.perform_later(date_string)
-      expect(ActionMailer::Base.deliveries.map(&:to)).to match_array([
-        [@admin_one.email],
-        [@admin_two.email],
-      ])
-    end
-
-    it 'sets the newsletter target date to the specified date' do
-      CreateNewsletterDraftJob.perform_later(date_string)
-      expect(Newsletter.last.target_date).to eq(date)
-    end
-
     context 'with PaperTrail enabled' do
       before(:each) do
         @was_enabled = PaperTrail.enabled?
         PaperTrail.enabled = true
+      end
+
+      it 'creates a newsletter draft' do
+        expect {
+          CreateNewsletterDraftJob.perform_later(date_string)
+        }.to change{ Newsletter.count }.by(1)
+      end
+
+      it 'sends notification emails to each admin' do
         CreateNewsletterDraftJob.perform_later(date_string)
+        expect(ActionMailer::Base.deliveries.map(&:to)).to match_array([
+          [@admin_one.email],
+          [@admin_two.email],
+        ])
+      end
+
+      it 'sets the newsletter target date to the specified date' do
+        CreateNewsletterDraftJob.perform_later(date_string)
+        expect(Newsletter.last.target_date).to eq(date)
       end
 
       it 'sets the originator of the create event to the job class name' do
+        CreateNewsletterDraftJob.perform_later(date_string)
         expect(Newsletter.last.versions.last.whodunnit).to eq('CreateNewsletterDraftJob')
       end
 

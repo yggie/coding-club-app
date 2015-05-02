@@ -20,6 +20,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def archived
+    @archived_events = Event.archived
+  end
+
   def update
     @event = Event.friendly.find(params.require(:id))
 

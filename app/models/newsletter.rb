@@ -9,11 +9,54 @@ class Newsletter < ActiveRecord::Base
   validates :body, presence: true
   validates :target_date, presence: true
 
+  validate :target_date_not_in_the_past
+  validate :not_more_than_one_draft_at_a_time
+
   scope :drafts, -> { where(sent_at: nil) }
   scope :archived, -> { where.not(sent_at: nil) }
 
+  def self.draft(target_date:)
+    Newsletter.new(
+      target_date: target_date,
+      subject: 'This Week',
+      body: <<-MARKDOWN
+# Welcome to this week's Coding Club
+
+*****************************
+
+# This’s Week’s Talk
+[Details of the talk]
+
+*****************************
+
+# What People are up to
+
+## [Person]
+[What “Person” is planning to do]
+
+*****************************
+
+[Closing remarks]
+
+*Alliants Coding Club Committee*
+      MARKDOWN
+    )
+  end
+
   def readonly?
     (self.sent_at && !self.sent_at_changed?) || (!self.sent_at && self.sent_at_changed?)
+  end
+
+  def not_more_than_one_draft_at_a_time
+    if self.sent_at.blank? && Newsletter.drafts.count > 0
+      self.errors.add(:base, 'Cannot have more than one active draft at a time')
+    end
+  end
+
+  def target_date_not_in_the_past
+    if self.target_date && self.target_date < Date.today
+      self.errors.add(:target_date, 'cannot be in the past')
+    end
   end
 
   def recent_activities(num)
