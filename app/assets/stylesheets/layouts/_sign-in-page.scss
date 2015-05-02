@@ -1,11 +1,14 @@
 .sign-in-page {
   .login-section {
     padding-top: 30px;
+    padding-bottom: 30px;
     margin: auto;
-    max-width: 300px;
+    max-width: 600px;
   }
 
   .btn-google-plus {
-    margin: 25px 0;
+    display: block;
+    max-width: 300px;
+    margin: 25px auto;
   }
 }

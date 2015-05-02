@@ -1,12 +1,11 @@
-<% provide(:skip_header, true) %>
-
-<%= render 'layouts/large_header' %>
-
 <div class="sign-in-page">
   <section class="login-section">
-    <p>
-      You must be logged in to view this application.
-    </p>
+    <h1>Sign in</h1>
+
+    <small>
+      You must sign in with your
+      <a href="http://alliants.com" target="_blank">Alliants</a> email address:
+    </small>
 
     <%= link_to user_omniauth_authorize_path(:google_oauth2),
       class: 'btn btn-block btn-social btn-google-plus' do %>
@@ -14,8 +13,8 @@
     <% end %>
 
     <small>
-      Currently, only Gmail accounts associated with the Alliants organisation can
-      be accepted.
+      Signing in will automatically register you to receive newsletters for the
+      coding club.
     </small>
   </section>
 </div>

@@ -11,6 +11,9 @@ google_oauth2:
   client_id: ''
   client_secret: ''
 
+google_maps_embed:
+  api_key: ''
+
 newsletter:
   sender: "coding-club@alliants.com"
 
