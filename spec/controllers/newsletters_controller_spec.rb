@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe NewslettersController, type: :controller do
-  describe 'POST create' do
+  describe 'POST create', job: true do
     before(:each) do
       @subscribed_user = FactoryGirl.create(:user, subscription_preference: :subscribed)
       @admin_user = FactoryGirl.create(:user, subscription_preference: :admin)

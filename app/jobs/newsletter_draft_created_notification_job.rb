@@ -5,8 +5,7 @@ class NewsletterDraftCreatedNotificationJob < ActiveJob::Base
     newsletter = Newsletter.find(newsletter_id)
 
     User.admins.each do |admin|
-      # TODO deliver_later does not seem to play well with rake tasks
-      AppMailer.newsletter_created_notification(newsletter, admin).deliver_now
+      AppMailer.newsletter_created_notification(newsletter, admin).deliver_later
     end
   end
 end

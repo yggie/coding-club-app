@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :edit, :create, :update]
+
   def new
     @available_hosts = User.subscribed
   end
@@ -12,6 +14,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
+      NotifyEventCreatedJob.new.perform(@event.id)
       redirect_to users_dashboard_path, flash: { success: 'Successfully scheduled an event' }
     else
       @available_hosts = User.subscribed
@@ -27,7 +30,11 @@ class EventsController < ApplicationController
   def update
     @event = Event.friendly.find(params.require(:id))
 
+    old_user_id = @event.user_id
     if @event.update_attributes(event_params)
+      if @event.user_id != old_user_id
+        AppMailer.event_created_for_you_notification(@event, @event.user).deliver_later
+      end
       redirect_to users_dashboard_path, flash: { success: 'Successfully updated event' }
     else
       @available_hosts = User.subscribed

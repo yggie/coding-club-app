@@ -37,7 +37,7 @@ RSpec.configure do |config|
   end
 
   # Clean up all jobs specs with truncation
-  config.before(:each, type: :job) do
+  config.before(:each, job: true) do
     DatabaseCleaner.strategy = :truncation
   end
 

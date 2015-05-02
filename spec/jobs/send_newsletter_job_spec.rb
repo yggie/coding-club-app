@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe SendNewsletterJob, type: :job do
-  describe '.perform_later' do
+  describe '.perform_later', job: true do
     let(:admin_only) { false }
 
     before(:each) do

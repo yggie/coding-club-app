@@ -11,7 +11,7 @@ describe CreateNewsletterDraftJob, type: :job do
       @admin_two = FactoryGirl.create(:user, subscription_preference: :admin)
     end
 
-    context 'with PaperTrail enabled' do
+    context 'with PaperTrail enabled', job: true do
       before(:each) do
         @was_enabled = PaperTrail.enabled?
         PaperTrail.enabled = true

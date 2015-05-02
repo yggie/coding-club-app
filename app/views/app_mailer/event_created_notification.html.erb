@@ -1,0 +1,26 @@
+<% provide(:subject, message.subject) %>
+
+<p>
+  Dear Coding Club Admin,
+</p>
+
+<p>A new event has been scheduled for <%= @event.date.strftime('%v') %>:</p>
+
+<div style="padding:0 20px">
+  <h4 style="margin-bottom:0">Title: <%= @event.title %></h4>
+
+  <p style="margin-top:5px">
+    <small>Scheduled: <%= @event.date %></small><br />
+    <small>Host: <%= @event.host_name %></small><br />
+
+    Summary: <%= @event.summary %>
+  </p>
+</div>
+
+<p>You can edit the details of the event <%= link_to 'here', event_url(@event) %>.</p>
+
+<p>
+  Kind Regards,
+  <br />
+  <strong>Coding Club App</strong>
+</p>
