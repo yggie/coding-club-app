@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
+  def dashboard
+    @active_newsletters = Newsletter.drafts.order(created_at: :desc)
+    @upcoming_events = Event.upcoming
+  end
+
   def edit
   end
 

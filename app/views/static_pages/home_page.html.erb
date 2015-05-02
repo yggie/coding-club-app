@@ -15,10 +15,20 @@
 
         <section>
           <h3>Upcoming Events</h3>
-          Every week, one of our members will prepare a session to develop our
-          skills, whether it be learning a new language, discovering new
-          programming practices, or simply a fun coding exercise, there is
-          always something new to learn.
+          <p>
+            Every week, one of our members will prepare a session to develop our
+            skills, whether it be learning a new language, discovering new
+            programming practices, or simply a fun coding exercise, there is
+            always something new to learn.
+          </p>
+
+          <% if @upcoming_events.empty? %>
+            <p>
+              Oops, no events have been scheduled for the near future, we must
+              do something!
+            </p>
+          <% else %>
+          <% end %>
         </section>
 
         <section>
@@ -31,8 +41,13 @@
         </section>
 
         <section class="well">
-          Interested in joining us?
-          <%= link_to 'Sign in', new_user_session_path %> now!
+          <% if user_signed_in? %>
+            I have an idea! Take me to my
+            <%= link_to 'dashboard', users_dashboard_path %>.
+          <% else %>
+            Interested in joining us?
+            <%= link_to 'Sign in', new_user_session_path %> now!
+          <% end %>
         </section>
       </div>
     </div>

@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   get '/settings', to: 'users#edit', as: :edit_user
   patch '/settings', to: 'users#update', as: :update_user
 
-  resources :newsletters, only: [:show, :index, :update] do
+  get '/dashboard', to: 'users#dashboard', as: :users_dashboard
+  get '/newsletters/archived', to: 'newsletters#archived', as: :archived_newsletters
+
+  resources :events, only: [:new, :create, :edit, :update]
+
+  resources :newsletters, only: [:show, :update] do
     get :confirm
     get :send_to_test_group
     get :send_to_subscribed_group

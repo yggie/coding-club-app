@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <section class="col-xs-12">
+      <h3>What would you like to do?</h3>
+
+      <ul>
+        <li><%= link_to 'schedule an event', new_event_path %></li>
+      </ul>
+    </section>
+
+    <section class="col-xs-12">
+      <h3>Upcoming Events</h3>
+
+      <% if @upcoming_events.empty? %>
+        <p>No events have been scheduled for the near future.</p>
+      <% else %>
+        <ul>
+          <% @upcoming_events.each do |event| %>
+            <li><%= link_to event.title, edit_event_path(event) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <p>
+        <small>
+          You can view a list of archived events
+          <%= link_to 'here', root_path %>.
+        </small>
+      </p>
+    </section>
+
+    <section class="col-xs-12">
+      <h3>Newsletter Drafts</h3>
+
+      <% if @active_newsletters.empty? %>
+        <p>There have been no newsletter drafts made recently</p>
+      <% else %>
+        <% @active_newsletters.each do |newsletter| %>
+          <p class="hint"><small><%= newsletter.due_date_in_words %>…</small></p>
+
+          <div class="row draft-list-item">
+            <%= link_to newsletter_path(newsletter) do %>
+              <div class="col-md-8">
+                <div class="draft-image" style="background-image:url(<%= image_path Newsletter::HEADER_IMAGE_PATH %>)">
+                </div>
+                <div class="draft-contents">
+                  <div class="draft-subject">
+                    <h3><%= newsletter.subject %></h3>
+                  </div>
+                  <pre class="draft-body"><%= newsletter.body %></pre>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <ul class="draft-activities-list">
+                  <% newsletter.recent_activities(5).each do |activity| %>
+                    <li class="media draft-activity-item">
+                      <div class="media-left">
+                        <%= image_tag activity.user.profile_image_url,
+                          title: activity.user.name, class: 'img-circle' %>
+                      </div>
+                      <div class="media-body">
+                        <%= "#{activity.type.capitalize}d" %> by <%= activity.user.name %> <%= time_ago_in_words(activity.time) %> ago
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <p>
+        <small>
+          You can view a list of archived newsletters
+          <%= link_to 'here', archived_newsletters_path %>.
+        </small>
+      </p>
+    </section>
+  </div>
+</div>
+

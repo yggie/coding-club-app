@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <section class="col-xs-12">
+      <h3>Archived Newsletters</h3>
+
+      <% if @archived.empty? %>
+        <p>There are no archived newsletters present</p>
+      <% else %>
+        <ul>
+          <% @archived.each do |newsletter| %>
+            <li>
+              <%= link_to newsletter_path(newsletter) do %>
+                “<%= newsletter.subject %>” sent <%= time_ago_in_words(newsletter.sent_at) %> ago
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </section>
+  </div>
+</div>

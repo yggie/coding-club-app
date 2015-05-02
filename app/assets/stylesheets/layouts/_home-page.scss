@@ -4,6 +4,9 @@
   }
 
   .well {
+    border: none;
+    border-radius: 20px;
+    box-shadow: none;
     font-size: $font-size-large;
   }
 }

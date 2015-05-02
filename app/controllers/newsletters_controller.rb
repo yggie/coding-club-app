@@ -5,8 +5,7 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.friendly.find(params[:id])
   end
 
-  def index
-    @active_newsletters = Newsletter.drafts.order(created_at: :desc)
+  def archived
     @archived = Newsletter.archived.order(created_at: :desc)
   end
 

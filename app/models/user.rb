@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, omniauth_providers: [:google_oauth2]
 
+  has_many :events
+
   validates :email, presence: true, format: /\A.*@alliants\.(?:com|co\.uk)\z/
   validates :name, presence: true
   validates :subscription_preference, presence: true
