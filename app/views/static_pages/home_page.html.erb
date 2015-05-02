@@ -1,0 +1,40 @@
+<% provide(:skip_header, true) %>
+
+<div class="home-page">
+  <%= render 'layouts/large_header' %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <section class="well">
+          The Alliants Coding Club is a meetup between coding enthusiasts at
+          <a href="http://alliants.com" target="_blank">Alliants</a>. We
+          dedicate an evening a week develop our coding skills and play around
+          with new technologies.
+        </section>
+
+        <section>
+          <h3>Upcoming Events</h3>
+          Every week, one of our members will prepare a session to develop our
+          skills, whether it be learning a new language, discovering new
+          programming practices, or simply a fun coding exercise, there is
+          always something new to learn.
+        </section>
+
+        <section>
+          <h3>Where</h3>
+          <div class="google-maps-container">
+            <div class="google-maps-overlay"></div>
+            <iframe frameborder="0" style="border:0;width:100%;height:500px"
+              src="https://www.google.com/maps/embed/v1/place?q=Alliants%2C%20Universal%20Marina%2C%20Crableck%20lane%20Southampton%2C%20United%20Kingdom&key=AIzaSyAUl3bc0b66ZyYp5S3xL4Ya0mqHck5JrmI"></iframe>
+          </div>
+        </section>
+
+        <section class="well">
+          Interested in joining us?
+          <%= link_to 'Sign in', new_user_session_path %> now!
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

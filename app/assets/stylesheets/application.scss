@@ -16,16 +16,20 @@
 
 @import "themes/colors";
 @import "themes/bootstrap-customizations";
+@import "themes/typography";
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 @import "bootstrap-social";
 
-@import "layouts/sign-in-page";
-
 @import "components/navbar";
 @import "components/draft-list";
+@import "components/site-footer";
+@import "components/large-header";
+@import "components/google-maps-overlay";
+
+@import "layouts/sign-in-page";
+@import "layouts/home-page";
 
 iframe.newsletter-preview {
   display: block;

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'newsletters#index'
+  root 'static_pages#home_page'
 
   get '/settings', to: 'users#edit', as: :edit_user
   patch '/settings', to: 'users#update', as: :update_user

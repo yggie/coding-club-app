@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NewsletterApp</title>
+  <title>Alliants Coding Club</title>
 
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57.png" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.png" />
@@ -34,15 +34,20 @@
 </head>
 <body>
 
-<% unless content_for(:skip_header) && yield(:skip_header) %>
-  <header>
-    <%= render 'layouts/header' %>
-  </header>
-<% end %>
+  <div class="page-wrap">
+    <% unless content_for(:skip_header) && yield(:skip_header) %>
+      <header>
+        <%= render 'layouts/header' %>
+      </header>
+    <% end %>
 
-<main>
-  <%= yield %>
-</main>
+    <main>
+      <%= yield %>
+    </main>
+  </div>
 
+  <footer class="site-footer">
+    Lovingly crafted by Bryan Yap.
+  </footer>
 </body>
 </html>

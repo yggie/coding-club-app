@@ -1,0 +1,25 @@
+$site-footer-height: 60px;
+
+body, html {
+  height: 100%;
+}
+
+.page-wrap {
+  min-height: 100%;
+  padding-bottom: $site-footer-height;
+}
+
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+
+.site-footer {
+  color: white;
+  margin-top: -$site-footer-height;
+  height: $site-footer-height;
+  font-family: $font-family-sans-serif;
+  font-weight: 100;
+  background-color: $primary-color;
+  padding: 30px 20px 10px;
+}
