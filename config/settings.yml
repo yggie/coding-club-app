@@ -15,7 +15,7 @@ google_maps_embed:
   api_key: ''
 
 newsletter:
-  sender: "coding-club@alliants.com"
+  sender: "coding-club-development@alliants.com"
 
 google_analytics:
   tracking_id: ''
