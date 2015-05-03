@@ -38,4 +38,26 @@ describe NewslettersController, type: :controller do
       ActionMailer::Base.deliveries.clear
     end
   end
+
+  describe 'PATCH update' do
+    before(:each) do
+      @newsletter = FactoryGirl.create(:newsletter)
+      @subscribed_user = FactoryGirl.create(:user, subscription_preference: :subscribed)
+
+      allow(request.env['warden']).to receive(:authenticate!) { @subscribed_user }
+      allow(controller).to receive(:current_user) { @subscribed_user }
+    end
+
+    it 'requires authentication' do
+      post :update, id: @newsletter.id, newsletter: { target_date: Date.tomorrow.to_s }
+
+      expect(request.env['warden']).to have_received(:authenticate!)
+    end
+
+    it 'redirects the user to the newsletter page' do
+      post :update, id: @newsletter.id, newsletter: { target_date: Date.tomorrow.to_s }
+
+      expect(response).to redirect_to(newsletter_path(@newsletter))
+    end
+  end
 end

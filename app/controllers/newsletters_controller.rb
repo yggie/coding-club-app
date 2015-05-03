@@ -33,12 +33,12 @@ class NewslettersController < ApplicationController
 
     if @newsletter.readonly?
       flash.now[:warning] = 'This draft can no longer be modified'
-      render :show
+      render :show, status: 422
     elsif @newsletter.update_attributes(newsletter_params)
       redirect_to newsletter_path(@newsletter), flash: { success: 'Successfully updated the draft' }
     else
       flash.now[:danger] = @newsletter.errors.full_messages.join(', ')
-      render :show
+      render :show, status: 422
     end
   end
 
@@ -83,6 +83,6 @@ class NewslettersController < ApplicationController
   private
 
   def newsletter_params
-    params.require(:newsletter).permit(:subject, :body)
+    params.require(:newsletter).permit(:subject, :body, :target_date)
   end
 end

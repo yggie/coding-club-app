@@ -48,7 +48,7 @@ class Newsletter < ActiveRecord::Base
   end
 
   def not_more_than_one_draft_at_a_time
-    if self.sent_at.blank? && Newsletter.drafts.count > 0
+    if self.sent_at.blank? && Newsletter.drafts.where.not(id: self.id).count > 0
       self.errors.add(:base, 'Cannot have more than one active draft at a time')
     end
   end
