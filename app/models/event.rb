@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :date, use: :slugged
+  has_paper_trail
 
   validates :title, presence: true
   validates :summary, presence: true
