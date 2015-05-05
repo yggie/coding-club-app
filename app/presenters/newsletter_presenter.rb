@@ -4,7 +4,7 @@ class NewsletterPresenter
     include ActionView::Helpers::TagHelper
 
     def header(text, header_level)
-      content_tag "h#{header_level}", text.html_safe, style: 'font-weight:100'
+      content_tag "h#{header_level}", text.html_safe, style: 'font-weight:300'
     end
   end
 
