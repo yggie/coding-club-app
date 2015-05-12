@@ -1,23 +1,14 @@
 .large-header {
-  text-transform: uppercase;
   background-color: $primary-color;
   color: $icon-color;
-  padding: 50px 30px 10px 30px;
   overflow: hidden;
+  padding: 40px 0;
 
-  .brand {
-    color: $icon-color;
-    margin: 0;
-    float: left;
-    width: 380px;
-    font-weight: 100;
-    font-family: $font-family-sans-serif;
-    font-size: 52px;
-    line-height: normal;
+  .logo img {
+    max-width: 250px;
   }
 
   .matrix-text-container {
-    margin-left: 380px;
     display: block;
 
     .matrix-text {
@@ -28,6 +19,7 @@
       border: none;
       margin: 0;
       padding: 0;
+      padding-left: 80px;
       overflow: hidden;
     }
   }

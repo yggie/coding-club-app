@@ -1,11 +1,21 @@
 //== Typography
 //
+
+/*
+== Font Weights ==
+Source Code Pro: normal, bold
+Roboto: normal, medium, bold
+*/
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  "Roboto", Helvetica, Arial, sans-serif;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif;
 // ** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-monospace:   "Source Code Pro", Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base:        $font-family-monospace;
 
 $font-size-base: 16px;
@@ -26,6 +36,13 @@ $font-size-base: 16px;
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    $font-family-sans-serif;
-$headings-font-weight:    300;
+$headings-font-weight:    $font-weight-medium;
 // $headings-line-height:    1.1
-// $headings-color:          inherit
+$headings-color: #666;
+
+h1, h2, h3 {
+  font-family: $font-family-sans-serif;
+  text-transform: uppercase;
+  color: $headings-color;
+  letter-spacing: 0.05rem;
+}

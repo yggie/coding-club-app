@@ -1,20 +1,22 @@
-<div class="sign-in-page">
-  <section class="login-section">
-    <h1>Sign in</h1>
+<div class="sign-in-page text-center container">
+  <div class="row">
+    <section class="login-section col-md-4 col-md-offset-4">
+      <h1>Sign in</h1>
+      <p>
+        You must sign in with the Google account associated with your
+        [name]@alliants.com email address:
+      </p>
+      <%= link_to user_omniauth_authorize_path(:google_oauth2),
+        class: 'btn btn-block btn-social btn-google-plus' do %>
+        <%= fa_icon('google-plus') %> Sign in with Google+
+      <% end %>
 
-    <small>
-      You must sign in with your
-      <a href="http://alliants.com" target="_blank">Alliants</a> email address:
-    </small>
-
-    <%= link_to user_omniauth_authorize_path(:google_oauth2),
-      class: 'btn btn-block btn-social btn-google-plus' do %>
-      <%= fa_icon('google-plus') %> Sign in with Google+
-    <% end %>
-
-    <small>
-      Signing in will automatically register you to receive newsletters for the
-      coding club.
-    </small>
-  </section>
+      <p>
+        <small>
+          Signing in will automatically register you to receive newsletters for
+          the coding club.
+        </small>
+      </p>
+    </section>
+  </div>
 </div>
