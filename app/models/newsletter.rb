@@ -1,5 +1,5 @@
 class Newsletter < ActiveRecord::Base
-  HEADER_IMAGE_PATH = 'header_transparent_bg_2015.png'
+  HEADER_IMAGE_PATH = 'header_2015_transparent.png'
 
   extend FriendlyId
   friendly_id :target_date, use: :slugged
