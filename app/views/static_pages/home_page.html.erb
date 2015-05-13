@@ -22,6 +22,34 @@
             always something new to learn.
           </p>
 
+          <% if @todays_event %>
+            <section class="row highlighted-event">
+              <div class="col-xs-4 col-sm-2">
+                <div class="event-date">
+                  <span class="day-of-the-month"><%= @todays_event.date.day %></span><br/>
+                  <span class="month"><%= @todays_event.date.strftime('%b') %></span>
+                </div>
+              </div>
+
+              <div class="col-xs-8 col-sm-10">
+                <h3><%= @todays_event.title %></h3>
+
+                <p><small><%= @todays_event.technologies %></small></p>
+                <p><%= @todays_event.summary %></p>
+
+                <div class="media">
+                  <div class="media-left">
+                    <%= image_tag @todays_event.host_profile_image_url, class: 'media-object img-circle' %>
+                  </div>
+
+                  <div class="media-body">
+                    <p><%= @todays_event.host_name %></p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          <% end %>
+
           <% if @upcoming_events.empty? %>
             <p>
               Oops, no events have been scheduled for the near future, we must
