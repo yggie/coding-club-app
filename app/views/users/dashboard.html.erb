@@ -17,7 +17,9 @@
       <% else %>
         <ul>
           <% @upcoming_events.each do |event| %>
-            <li><%= link_to event.title, edit_event_path(event) %></li>
+            <li>
+              <%= link_to event.title, edit_event_path(event) %> <small><%= "by #{event.host_name} [#{event.date.inspect}]" %></small>
+            </li>
           <% end %>
         </ul>
       <% end %>
