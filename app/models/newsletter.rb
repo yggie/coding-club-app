@@ -20,23 +20,15 @@ class Newsletter < ActiveRecord::Base
       target_date: target_date,
       subject: 'This Week',
       body: <<-MARKDOWN
-# Welcome to this week's Coding Club
+# [This Week’s Activity]
 
 *****************************
 
-# This’s Week’s Talk
-[Details of the talk]
+## Upcoming: [Next Week’s Activity]
 
 *****************************
 
-# What People are up to
-
-## [Person]
-[What “Person” is planning to do]
-
-*****************************
-
-[Closing remarks]
+[Closing Remarks]
 
 *Alliants Coding Club Committee*
       MARKDOWN
